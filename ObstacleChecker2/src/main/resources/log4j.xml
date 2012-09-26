@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/docs/api/org/apache/log4j/xml/log4j.dtd">
+
+<log4j:configuration debug="true" xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d] %-5p [%F] - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="ocConfig" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="log/ocConfig.log" />
+		<param name="DatePattern" value=".yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d] %-5p [%F] - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="ocCore" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="log/ocCore.log" />
+		<param name="DatePattern" value=".yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d] - %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="org.apache.commons">
+		<level value="ERROR"/>
+		<appender-ref ref="ocConfig" />
+	</logger>
+
+	<logger name="httpclient">
+		<level value="ERROR"/>
+		<appender-ref ref="ocConfig" />
+	</logger>
+
+	<logger name="com.insprit.vmg.checker.obstacle.core">
+		<level value="DEBUG"/>
+		<appender-ref ref="ocCore" />
+	</logger>
+
+
+</log4j:configuration>
+
